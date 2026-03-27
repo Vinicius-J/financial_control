@@ -1,7 +1,7 @@
 import { CreateUserUseCase } from '../../../application/useCases/User/CreateUserUseCase';
-import { InDatabaseUserRepository } from '../../../infrastructure/repositories/InDatabaseUserRepository';
+import { MongoDBUserRepository } from '../../../infrastructure/repositories/MongoDBUserRepository';
 
 export function makeCreateUserUseCase() {
-  const repository = new InDatabaseUserRepository();
+  const repository = new MongoDBUserRepository();
   return new CreateUserUseCase(repository);
 }
