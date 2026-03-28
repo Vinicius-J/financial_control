@@ -14,7 +14,7 @@ Este projeto foi criado com o objetivo de demonstrar boas práticas no desenvolv
 - autenticação com JWT
 - proteção de rotas
 - types, enums, interfaces TypeScript
-- agregações no banco de dados SQL
+- agregações no banco de dados MongoDB
 - organização de código com clean architeture
 - uso de variáveis de ambiente
 - estrutura escalável para aplicações backend
@@ -98,7 +98,7 @@ DATABASE_URL="your_database_url"
 | ------------ | -------------------------------------------- |
 | PORT         | Porta em que a aplicação será executada      |
 | JWT_SECRET   | Chave secreta usada para gerar os tokens JWT |
-| DATABASE_URL | URL de acesso para o banco de dados SQL      |
+| DATABASE_URL | URL de acesso para o banco de dados MongoDB      |
 
 ---
 
