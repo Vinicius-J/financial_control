@@ -6,6 +6,9 @@ export class FindAllUsersUseCase {
 
   async execute(): Promise<User[] | undefined> {
     const users = await this.repository.findAll();
+
+    if (!users?.length) throw new Error('Users not found');
+
     return users;
   }
 }

@@ -7,7 +7,6 @@ export class UserMapper {
         name: user.name,
         email: user.email,
         password: user.password,
-        role: user.role,
       },
       user._id
     );

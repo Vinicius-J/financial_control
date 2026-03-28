@@ -8,4 +8,22 @@ export class UserFactory {
 
     return new User({ name, email, password }, id || randomUUID());
   }
+
+  static update(
+    id: string,
+    name: string,
+    email: string,
+    passwordBody: string,
+    passwordUser: string,
+  ): User {
+    const valid = bcryptjs.compareSync(passwordBody, passwordUser);
+
+    if (valid) {
+      const password = passwordUser;
+      return new User({ name, email, password }, id);
+    }
+
+    const password = bcryptjs.hashSync(passwordBody, 8);
+    return new User({ name, email, password }, id);
+  }
 }

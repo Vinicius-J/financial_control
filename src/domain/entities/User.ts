@@ -1,17 +1,16 @@
-import { IUserRoles } from '../enums/IUserRoles';
+import { TypeUserRoles } from '../enums/TypeUserRoles';
 
 interface UserProps {
   name: string;
   email: string;
   password: string;
-  role: IUserRoles;
 }
 
 export class User {
   public name: string;
   public email: string;
   public password: string;
-  public role: IUserRoles;
+  public role: TypeUserRoles;
   constructor(
     props: UserProps,
     public readonly id: string
@@ -30,26 +29,5 @@ export class User {
     if (!this.name || !this.email || !this.password) {
       throw new Error('Information is missing to create the user');
     }
-  }
-
-  changeName(name: string) {
-    if (name == this.name) {
-      throw new Error('Name is already being used');
-    }
-    this.name = name;
-  }
-
-  changeEmail(email: string) {
-    if (email == this.email) {
-      throw new Error('Email is already being used');
-    }
-    this.email = email;
-  }
-
-  changePassword(password: string) {
-    if (password == this.password) {
-      throw new Error('Password is already being used');
-    }
-    this.password = password;
   }
 }

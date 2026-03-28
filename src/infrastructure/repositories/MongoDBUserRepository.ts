@@ -10,8 +10,6 @@ export class MongoDBUserRepository implements IUserRepository {
       name: user.name,
       email: user.email,
       password: user.password,
-      expense: user.expense,
-      revenue: user.revenue,
       role: user.role,
     });
     return user;
@@ -26,38 +24,19 @@ export class MongoDBUserRepository implements IUserRepository {
   async findById(id: string): Promise<User | undefined> {
     const user = await UserModel.findById(id);
 
-    if (!user) return;
-
     return UserMapper.toDomain(user);
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
     const user = await UserModel.findOne({ email });
 
-    if (!user) return;
-
-    console.log(user);
-
     return UserMapper.toDomain(user);
   }
 
   async update(id: string, newUser: User): Promise<User> {
-    const user = await UserModel.findByIdAndUpdate(
-      id,
-      {
-        name: newUser.name,
-        email: newUser.email,
-        password: newUser.password,
-        expense: newUser.expense,
-        revenue: newUser.revenue,
-        role: newUser.role,
-      },
-      { new: true }
-    );
-
-    if (!user) {
-      throw new Error('User not found');
-    }
+    const user = await UserModel.findOneAndUpdate({ _id: id }, newUser, {
+      returnDocument: 'after',
+    });
 
     return UserMapper.toDomain(user);
   }
