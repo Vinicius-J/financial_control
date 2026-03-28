@@ -4,8 +4,10 @@ const expenseSchema = new Schema({
   _id: String,
   userId: { type: String, ref: 'User', required: true, index: true },
 
-  amount: Number,
-  description: String,
+  amount: { type: Number, required: true },
+  description: { type: String, required: true },
+  category: { type: String, required: true },
+  acquisitionDate: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
