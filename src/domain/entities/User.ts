@@ -1,21 +1,16 @@
 import { IUserRoles } from '../enums/IUserRoles';
-import { Expense } from './Expense';
-import { Revenue } from './Revenue';
 
 interface UserProps {
   name: string;
   email: string;
   password: string;
-  expense: Expense;
-  revenue: Revenue;
+  role: IUserRoles;
 }
 
 export class User {
   public name: string;
   public email: string;
   public password: string;
-  public expense: Expense;
-  public revenue: Revenue;
   public role: IUserRoles;
   constructor(
     props: UserProps,
@@ -26,8 +21,6 @@ export class User {
     this.name = props.name;
     this.email = props.email;
     this.password = props.password;
-    this.expense = props.expense;
-    this.revenue = props.revenue;
     this.role = 'user';
 
     this.validate();

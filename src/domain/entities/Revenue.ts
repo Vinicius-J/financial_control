@@ -1,3 +1,7 @@
 export class Revenue {
-  constructor() {}
+  constructor(
+    public readonly id: string,
+    public readonly userId: string,
+    public amount: number
+  ) {}
 }
