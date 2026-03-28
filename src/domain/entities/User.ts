@@ -1,35 +1,42 @@
-import { IUserRoles } from '../repositories/User/IUserRoles';
+import { IUserRoles } from '../enums/IUserRoles';
 import { Expense } from './Expense';
 import { Revenue } from './Revenue';
 
+interface UserProps {
+  name: string;
+  email: string;
+  password: string;
+  expense: Expense;
+  revenue: Revenue;
+}
+
 export class User {
-  createdAt: Date;
+  public name: string;
+  public email: string;
+  public password: string;
+  public expense: Expense;
+  public revenue: Revenue;
+  public role: IUserRoles;
   constructor(
-    private id: string,
-    private name: string,
-    private email: string,
-    private password: string,
-    private expense: Expense,
-    private revenue: Revenue,
-    private role: IUserRoles = 'user'
+    props: UserProps,
+    public readonly id: string
   ) {
-    if (!id || !name || !email || !password) {
+    this.id = id;
+
+    this.name = props.name;
+    this.email = props.email;
+    this.password = props.password;
+    this.expense = props.expense;
+    this.revenue = props.revenue;
+    this.role = 'user';
+
+    this.validate();
+  }
+
+  private validate() {
+    if (!this.name || !this.email || !this.password) {
       throw new Error('Information is missing to create the user');
     }
-
-    this.createdAt = new Date();
-  }
-
-  get userId() {
-    return this.id;
-  }
-
-  get userName() {
-    return this.name;
-  }
-
-  get userEmail() {
-    return this.email;
   }
 
   changeName(name: string) {

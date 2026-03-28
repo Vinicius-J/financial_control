@@ -1,12 +1,11 @@
 import { IUserRepository } from '../../../domain/repositories/User/IUserRepository';
 import { CreateUserDTO } from '../../dtos/User/CreateUserDTO';
-import { ReturnCreatedUserDTO } from '../../dtos/User/ReturnCreatedUserDTO';
 import { UserFactory } from '../../factories/UserFactory';
 
 export class CreateUserUseCase {
   constructor(private repository: IUserRepository) {}
 
-  async execute(body: CreateUserDTO): Promise<ReturnCreatedUserDTO> {
+  async execute(body: CreateUserDTO) {
     const userExists = await this.repository.findByEmail(body.email);
 
     if (userExists) {
@@ -17,11 +16,6 @@ export class CreateUserUseCase {
 
     await this.repository.save(user);
 
-    return {
-      id: user.userId,
-      name: user.userName,
-      email: user.userEmail,
-      createdAt: user.createdAt,
-    };
+    return user;
   }
 }
