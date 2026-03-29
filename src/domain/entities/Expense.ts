@@ -20,6 +20,7 @@ export class Expense {
     public readonly id: string
   ) {
     this.userId = props.userId;
+    this.id = id;
     this.amount = props.amount;
     this.description = props.description;
     this.category = props.category;

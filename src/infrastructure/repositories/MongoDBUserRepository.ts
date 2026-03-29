@@ -24,11 +24,15 @@ export class MongoDBUserRepository implements IUserRepository {
   async findById(id: string): Promise<User | undefined> {
     const user = await UserModel.findById(id);
 
+    if (!user) return;
+
     return UserMapper.toDomain(user);
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
     const user = await UserModel.findOne({ email });
+
+    if (!user) return;
 
     return UserMapper.toDomain(user);
   }
