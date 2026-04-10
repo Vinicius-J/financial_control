@@ -22,7 +22,11 @@ export class MongoDBExpenseRepository implements IExpenseRepository {
     return expenses.map(ExpenseMapper.toDomain);
   }
 
-  findById(expenseId: string): Promise<Expense | undefined> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<Expense | undefined> {
+    const expense = await ExpenseModel.findById(id);
+
+    if (!expense) return;
+
+    return ExpenseMapper.toDomain(expense);
   }
 }
