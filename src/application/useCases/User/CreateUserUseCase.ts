@@ -12,8 +12,6 @@ export class CreateUserUseCase {
 
     const user = UserFactory.create(body.name, body.email, body.password);
 
-    await this.repository.save(user);
-
-    return user;
+    return await this.repository.save(user);
   }
 }

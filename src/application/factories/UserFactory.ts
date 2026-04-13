@@ -14,7 +14,7 @@ export class UserFactory {
     name: string,
     email: string,
     passwordBody: string,
-    passwordUser: string,
+    passwordUser: string
   ): User {
     const valid = bcryptjs.compareSync(passwordBody, passwordUser);
 
