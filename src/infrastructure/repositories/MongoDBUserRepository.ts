@@ -1,10 +1,11 @@
+import { ResCreateUserDTO } from '../../application/dtos/User/ResCreateUserDTO';
 import { User } from '../../domain/entities/User';
 import { IUserRepository } from '../../domain/repositories/User/IUserRepository';
 import { UserMapper } from '../mappers/UserMapper';
 import UserModel from '../models/UserModel';
 
 export class MongoDBUserRepository implements IUserRepository {
-  async save(user: User): Promise<User> {
+  async save(user: User): Promise<ResCreateUserDTO> {
     await UserModel.create({
       _id: user.id,
       name: user.name,
@@ -12,7 +13,12 @@ export class MongoDBUserRepository implements IUserRepository {
       password: user.password,
       role: user.role,
     });
-    return user;
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
   }
 
   async findAll(): Promise<User[] | undefined> {
