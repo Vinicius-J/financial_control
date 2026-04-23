@@ -1,6 +1,6 @@
 import { IExpenseRepository } from '../../../domain/repositories/Expense/IExpenseRepository';
 
-export class FindAllExpenseUseCase {
+export class ShowAllExpenseUseCase {
   constructor(private repository: IExpenseRepository) {}
 
   async execute(userId: string) {

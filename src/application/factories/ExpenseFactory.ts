@@ -8,12 +8,9 @@ export class ExpenseFactory {
     amount: number,
     description: string,
     category: TypeExpenseCategory,
-    acquisitionDate: string,
+    expenseDate: string,
     id?: string
   ): Expense {
-    return new Expense(
-      { userId, amount, description, category, acquisitionDate },
-      id || randomUUID()
-    );
+    return new Expense({ userId, amount, description, category, expenseDate }, id || randomUUID());
   }
 }

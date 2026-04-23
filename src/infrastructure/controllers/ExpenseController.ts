@@ -1,30 +1,19 @@
 import { Request, Response } from 'express';
 import { makeCreateExpenseUseCase } from '../../main/factories/Expense/makeCreateExpenseUseCase';
-import { makeFindAllExpenseUseCase } from '../../main/factories/Expense/makeFindAllExpenseUseCase';
+import { makeShowAllExpenseUseCase } from '../../main/factories/Expense/makeShowAllExpenseUseCase';
 import { makeFindExpenseByIdUseCase } from '../../main/factories/Expense/makeFindExpenseByIdUseCase';
 
 export class ExpenseController {
   async index(req: Request, res: Response) {
     try {
       const userId = String(req.params.userId);
-      const useCase = makeFindAllExpenseUseCase();
+      const useCase = makeShowAllExpenseUseCase();
 
       const expenses = await useCase.execute(userId);
 
-      return res.status(200).json(expenses);
-    } catch (err) {
-      if (err instanceof Error) return res.status(400).json({ error: err.message });
-    }
-  }
+      if (expenses?.length) return res.status(200).json(expenses);
 
-  async show(req: Request, res: Response) {
-    try {
-      const id = String(req.params.id);
-      const useCase = makeFindExpenseByIdUseCase();
-
-      const expenses = await useCase.execute(id);
-
-      return res.status(200).json(expenses);
+      return res.status(200).json({ message: 'Expenses' });
     } catch (err) {
       if (err instanceof Error) return res.status(400).json({ error: err.message });
     }
@@ -39,6 +28,19 @@ export class ExpenseController {
       const expense = await useCase.execute(userId, req.body);
 
       return res.status(201).json(expense);
+    } catch (err) {
+      if (err instanceof Error) return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async show(req: Request, res: Response) {
+    try {
+      const id = String(req.params.id);
+      const useCase = makeFindExpenseByIdUseCase();
+
+      const expenses = await useCase.execute(id);
+
+      return res.status(200).json(expenses);
     } catch (err) {
       if (err instanceof Error) return res.status(400).json({ error: err.message });
     }

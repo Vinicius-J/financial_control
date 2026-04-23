@@ -8,7 +8,7 @@ export class ExpenseMapper {
         amount: expense.amount,
         description: expense.description,
         category: expense.category,
-        acquisitionDate: expense.acquisitionDate,
+        expenseDate: expense.expenseDate,
       },
       expense._id
     );

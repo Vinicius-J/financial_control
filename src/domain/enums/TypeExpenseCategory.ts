@@ -1,1 +1,1 @@
-export type TypeExpenseCategory = 'wage' | 'investment' | 'extras';
+export type TypeExpenseCategory = 'helth' | 'investment' | 'expenses';

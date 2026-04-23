@@ -5,7 +5,7 @@ interface ExpenseProps {
   amount: number;
   description: string;
   category: TypeExpenseCategory;
-  acquisitionDate: string;
+  expenseDate: string;
 }
 
 export class Expense {
@@ -13,7 +13,7 @@ export class Expense {
   public amount: number;
   public description: string;
   public category: TypeExpenseCategory;
-  public acquisitionDate: string;
+  public expenseDate: string;
 
   constructor(
     props: ExpenseProps,
@@ -24,13 +24,13 @@ export class Expense {
     this.amount = props.amount;
     this.description = props.description;
     this.category = props.category;
-    this.acquisitionDate = props.acquisitionDate;
+    this.expenseDate = props.expenseDate;
 
     this.validate();
   }
 
   private validate() {
-    if (!this.amount || !this.description || !this.category || !this.acquisitionDate) {
+    if (!this.amount || !this.description || !this.category || !this.expenseDate) {
       throw new Error('Information is missing to create the expense');
     }
   }

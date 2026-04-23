@@ -11,7 +11,7 @@ export class MongoDBExpenseRepository implements IExpenseRepository {
       amount: expense.amount,
       description: expense.description,
       category: expense.category,
-      acquisitionDate: expense.acquisitionDate,
+      expenseDate: expense.expenseDate,
     });
 
     return expense;
@@ -19,6 +19,7 @@ export class MongoDBExpenseRepository implements IExpenseRepository {
 
   async findAll(userId: string): Promise<Expense[] | undefined> {
     const expenses = await ExpenseModel.find({ userId });
+    console.log(expenses);
     return expenses.map(ExpenseMapper.toDomain);
   }
 

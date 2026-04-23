@@ -7,7 +7,7 @@ const expenseSchema = new Schema({
   amount: { type: Number, required: true },
   description: { type: String, required: true },
   category: { type: String, required: true },
-  acquisitionDate: { type: String, required: true },
+  expenseDate: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
