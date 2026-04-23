@@ -1,7 +1,7 @@
 import { User } from '../../../domain/entities/User';
 import { IUserRepository } from '../../../domain/repositories/User/IUserRepository';
 
-export class FindUserByIdUseCase {
+export class ShowUserUseCase {
   constructor(private repository: IUserRepository) {}
 
   async execute(userId: string): Promise<User | undefined> {
