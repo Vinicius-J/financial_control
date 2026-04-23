@@ -1,8 +1,8 @@
-import { ResCreateUserDTO } from '../../../application/dtos/User/ResCreateUserDTO';
+import { GetUserDTO } from '../../../application/dtos/User/GetUserDTO';
 import { User } from '../../entities/User';
 
 export interface IUserRepository {
-  save(user: User): Promise<ResCreateUserDTO>;
+  save(user: User): Promise<GetUserDTO>;
   findAll(): Promise<User[] | undefined>;
   findById(id: string): Promise<User | undefined>;
   findByEmail(email: string): Promise<User | undefined>;

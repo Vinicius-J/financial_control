@@ -1,11 +1,11 @@
-import { ResCreateUserDTO } from '../../application/dtos/User/ResCreateUserDTO';
+import { GetUserDTO } from '../../application/dtos/User/GetUserDTO';
 import { User } from '../../domain/entities/User';
 import { IUserRepository } from '../../domain/repositories/User/IUserRepository';
 import { UserMapper } from '../mappers/UserMapper';
 import UserModel from '../models/UserModel';
 
 export class MongoDBUserRepository implements IUserRepository {
-  async save(user: User): Promise<ResCreateUserDTO> {
+  async save(user: User): Promise<GetUserDTO> {
     await UserModel.create({
       _id: user.id,
       name: user.name,
