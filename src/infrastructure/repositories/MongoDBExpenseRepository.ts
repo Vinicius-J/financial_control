@@ -29,4 +29,14 @@ export class MongoDBExpenseRepository implements IExpenseRepository {
 
     return ExpenseMapper.toDomain(expense);
   }
+
+  async update(id: string, newExpense: Expense): Promise<Expense | undefined> {
+    const expense = await ExpenseModel.findByIdAndUpdate(id, newExpense);
+
+    return ExpenseMapper.toDomain(expense);
+  }
+
+  async delete(expenseId: string): Promise<void> {
+    await ExpenseModel.findByIdAndDelete(expenseId);
+  }
 }

@@ -25,5 +25,13 @@ export class Expense {
     this.description = props.description;
     this.category = props.category;
     this.acquisitionDate = props.acquisitionDate;
+
+    this.validate();
+  }
+
+  private validate() {
+    if (!this.amount || !this.description || !this.category || !this.acquisitionDate) {
+      throw new Error('Information is missing to create the expense');
+    }
   }
 }
