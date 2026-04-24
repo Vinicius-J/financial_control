@@ -7,5 +7,6 @@ const controller = new ExpenseController();
 expenseRoutes.get('/:userId', controller.index);
 expenseRoutes.post('/:userId', controller.store);
 expenseRoutes.get('/:userId/:id', controller.show);
+expenseRoutes.put('/:userId/:id', controller.update);
 
 export default expenseRoutes;

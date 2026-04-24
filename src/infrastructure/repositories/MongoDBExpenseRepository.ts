@@ -19,7 +19,6 @@ export class MongoDBExpenseRepository implements IExpenseRepository {
 
   async findAll(userId: string): Promise<Expense[] | undefined> {
     const expenses = await ExpenseModel.find({ userId });
-    console.log(expenses);
     return expenses.map(ExpenseMapper.toDomain);
   }
 

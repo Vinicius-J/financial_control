@@ -13,4 +13,15 @@ export class ExpenseFactory {
   ): Expense {
     return new Expense({ userId, amount, description, category, expenseDate }, id || randomUUID());
   }
+
+  static update(
+    id: string,
+    userId: string,
+    amount: number,
+    description: string,
+    category: TypeExpenseCategory,
+    expenseDate: string
+  ): Expense {
+    return new Expense({ userId, amount, description, category, expenseDate }, id);
+  }
 }
