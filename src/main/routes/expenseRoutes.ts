@@ -8,5 +8,6 @@ expenseRoutes.get('/:userId', controller.index);
 expenseRoutes.post('/:userId', controller.store);
 expenseRoutes.get('/:userId/:id', controller.show);
 expenseRoutes.put('/:userId/:id', controller.update);
+expenseRoutes.delete('/:userId/:id', controller.delete);
 
 export default expenseRoutes;

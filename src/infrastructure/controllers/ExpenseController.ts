@@ -3,6 +3,7 @@ import { makeCreateExpenseUseCase } from '../../main/factories/Expense/makeCreat
 import { makeShowAllExpenseUseCase } from '../../main/factories/Expense/makeShowAllExpenseUseCase';
 import { makeFindExpenseByIdUseCase } from '../../main/factories/Expense/makeFindExpenseByIdUseCase';
 import { makeUpdateExpenseUseCase } from '../../main/factories/Expense/makeUpdateExpenseUseCase';
+import { makeDeleteExpenseUseCase } from '../../main/factories/Expense/makeDeleteExpenseUseCase';
 
 export class ExpenseController {
   async index(req: Request, res: Response) {
@@ -54,6 +55,20 @@ export class ExpenseController {
       const useCase = makeUpdateExpenseUseCase();
 
       const expense = await useCase.execute(id, req.body);
+
+      return res.status(200).json(expense);
+    } catch (err) {
+      if (err instanceof Error) return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async delete(req: Request, res: Response) {
+    try {
+      const id = String(req.params.id);
+
+      const useCase = makeDeleteExpenseUseCase();
+
+      const expense = await useCase.execute(id);
 
       return res.status(200).json(expense);
     } catch (err) {
